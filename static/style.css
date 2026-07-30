@@ -1,0 +1,148 @@
+/* ===========================
+   Library Management System
+   style.css
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+
+    /* Disable text selection */
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+body{
+    background:url("images/background.jpeg") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+    text-align:center;
+    padding-top:100px;
+}
+
+/* Headings */
+
+h1{
+    color:white;
+    font-size:42px;
+    text-shadow:2px 2px 8px black;
+    margin-bottom:20px;
+}
+
+h2{
+    color:white;
+    font-size:32px;
+    text-shadow:2px 2px 8px black;
+    margin-bottom:20px;
+}
+
+h3{
+    color:white;
+    font-size:22px;
+    text-shadow:2px 2px 8px black;
+    margin-bottom:30px;
+}
+
+/* Input Box */
+
+input{
+    width:280px;
+    padding:12px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    font-size:16px;
+
+    /* Allow typing inside input */
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+}
+
+/* Button */
+
+button{
+    background:#007BFF;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#0056b3;
+    transform:scale(1.05);
+}
+
+/* Glass Box */
+
+.container{
+    width:420px;
+    margin:auto;
+    padding:30px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Links */
+
+a{
+    text-decoration:none;
+}
+
+/* Table */
+
+table{
+    width:90%;
+    margin:auto;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    color:white;
+}
+
+table,th,td{
+    border:1px solid white;
+}
+
+th,td{
+    padding:12px;
+}
+
+/* Card */
+
+.card{
+    width:250px;
+    margin:20px;
+    display:inline-block;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    color:white;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    transition:0.3s;
+}
+
+/* Footer */
+
+footer{
+    color:white;
+    margin-top:50px;
+    text-shadow:1px 1px 5px black;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Issue Module</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f2f2f2;
+            text-align:center;
+        }
+
+        .box{
+            width:400px;
+            margin:auto;
+            margin-top:40px;
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px gray;
+        }
+
+        input{
+            width:90%;
+            padding:10px;
+            margin:8px;
+        }
+
+        button{
+            width:95%;
+            padding:10px;
+            background:green;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        .search-btn{
+            background:#2196F3;
+        }
+
+        .back-btn{
+            background:red;
+        }
+
+        table{
+            width:90%;
+            margin:30px auto;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        table,th,td{
+            border:1px solid black;
+        }
+
+        th{
+            background:#4CAF50;
+            color:white;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Staff Issue Module</h2>
+
+<form action="/staff_issue" method="POST">
+
+<label>Staff ID</label><br>
+<input type="number" name="staff_id" required>
+
+<label>Book ID</label><br>
+<input type="number" name="book_id" required>
+
+<label>Issue Date</label><br>
+<input type="date" name="issue_date" required>
+
+<label>Return Date</label><br>
+<input type="date" name="return_date" required>
+
+<label>Status</label><br>
+<input type="text" name="status" value="Issued" readonly>
+
+<br><br>
+
+<button type="submit">
+Issue Book
+</button>
+
+</form>
+
+</div>
+
+<h2>Staff Issued Books</h2>
+
+<div class="box">
+
+<form action="/staff_issue" method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search Staff ID / Book ID / Status"
+value="{{ search }}">
+
+<button class="search-btn" type="submit">
+Search
+</button>
+
+</form>
+
+</div>
+
+<table>
+
+<tr>
+
+<th>Issue ID</th>
+<th>Staff ID</th>
+<th>Book ID</th>
+<th>Issue Date</th>
+<th>Return Date</th>
+<th>Status</th>
+
+</tr>
+
+{% for row in issues %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[4] }}</td>
+<td>{{ row[5] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="box">
+
+<a href="/dashboard">
+<button class="back-btn" type="button">
+Back to Dashboard
+</button>
+</a>
+
+</div>
+
+</body>
+</html>

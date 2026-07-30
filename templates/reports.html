@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library Reports</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#2c3e50;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+.card h2{
+    font-size:40px;
+    color:#27ae60;
+}
+
+.card p{
+    margin-top:10px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.buttons{
+    text-align:center;
+    margin-top:35px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    padding:12px 30px;
+    border-radius:8px;
+    font-size:18px;
+    margin:10px;
+}
+
+.pdf{
+    background:#27ae60;
+}
+
+.pdf:hover{
+    background:#1e8449;
+}
+
+.back{
+    background:#3498db;
+}
+
+.back:hover{
+    background:#21618c;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>📊 Library Reports</h1>
+
+<div class="cards">
+
+<div class="card">
+<h2>{{ total_students }}</h2>
+<p>Total Students</p>
+</div>
+
+<div class="card">
+<h2>{{ total_staff }}</h2>
+<p>Total Staff</p>
+</div>
+
+<div class="card">
+<h2>{{ total_books }}</h2>
+<p>Total Books</p>
+</div>
+
+<div class="card">
+<h2>{{ available_books }}</h2>
+<p>Available Books</p>
+</div>
+
+<div class="card">
+<h2>{{ issued_books }}</h2>
+<p>Student Issued Books</p>
+</div>
+
+<div class="card">
+<h2>{{ returned_books }}</h2>
+<p>Returned Books</p>
+</div>
+
+<div class="card">
+<h2>{{ staff_issued }}</h2>
+<p>Staff Issued Books</p>
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="/download_report" class="btn pdf">
+📄 Download PDF
+</a>
+
+<a href="/dashboard" class="btn back">
+⬅ Back to Dashboard
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

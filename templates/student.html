@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Module</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f2f2f2;
+            text-align:center;
+        }
+
+        .box{
+            width:90%;
+            max-width:1000px;
+            margin:auto;
+            margin-top:40px;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px gray;
+        }
+
+        input{
+            width:90%;
+            padding:10px;
+            margin:10px;
+            font-size:16px;
+        }
+
+        button{
+            width:95%;
+            padding:10px;
+            font-size:18px;
+            background:green;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:darkgreen;
+        }
+
+        .back{
+            background:blue;
+            margin-top:10px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:30px;
+        }
+
+        table,th,td{
+            border:1px solid black;
+        }
+
+        th{
+            background:#4CAF50;
+            color:white;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Student Registration</h2>
+
+<form action="/add_student" method="POST">
+
+<input
+type="text"
+name="name"
+placeholder="Enter Student Name"
+required>
+
+<input
+type="text"
+name="department"
+placeholder="Department"
+required>
+
+<input
+type="text"
+name="year"
+placeholder="Year"
+required>
+
+<input
+type="email"
+name="email"
+placeholder="Email"
+required>
+
+<input
+type="text"
+name="phone"
+placeholder="Phone Number"
+required>
+
+<button type="submit">
+Save Student
+</button>
+
+</form>
+
+<br>
+
+<a href="/dashboard">
+<button class="back">
+Back to Dashboard
+</button>
+</a>
+
+<h2>Student List</h2>
+
+<!-- SEARCH BOX -->
+
+<form action="/students" method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search by Name / Department / Year"
+value="{{ search }}">
+
+<button type="submit" style="background:#2196F3;">
+Search
+</button>
+
+</form>
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Year</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Action</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student[0] }}</td>
+<td>{{ student[1] }}</td>
+<td>{{ student[2] }}</td>
+<td>{{ student[3] }}</td>
+<td>{{ student[4] }}</td>
+<td>{{ student[5] }}</td>
+
+<td>
+
+<a href="/edit_student/{{ student[0] }}">
+<button style="background:orange; width:80px;">
+Edit
+</button>
+</a>
+
+<br><br>
+
+<a href="/delete_student/{{ student[0] }}">
+<button style="background:red; width:80px;">
+Delete
+</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Issued Books</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .form-box {
+            width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-btn{
+            background:green;
+        }
+
+        .back-btn{
+            width:250px;
+            margin:20px auto;
+            display:block;
+            background:#555;
+        }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Issue Book</h2>
+
+<div class="form-box">
+
+<form action="/add_issue" method="POST">
+
+    <input type="number" name="student_id" placeholder="Student ID" required>
+
+    <input type="number" name="book_id" placeholder="Book ID" required>
+
+    <label>Issue Date</label>
+    <input type="date" name="issue_date" required>
+
+    <label>Return Date</label>
+    <input type="date" name="return_date" required>
+
+    <select name="status">
+        <option value="Issued">Issued</option>
+        <option value="Returned">Returned</option>
+    </select>
+
+    <button type="submit">Issue Book</button>
+
+</form>
+
+</div>
+
+<h2>Issued Books List</h2>
+
+<div class="form-box">
+
+<form action="/issue_books" method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search Student ID / Book ID / Status"
+value="{{ search }}">
+
+<button class="search-btn" type="submit">
+Search
+</button>
+
+</form>
+
+</div>
+
+<table>
+
+<tr>
+    <th>Issue ID</th>
+    <th>Student ID</th>
+    <th>Book ID</th>
+    <th>Issue Date</th>
+    <th>Return Date</th>
+    <th>Status</th>
+</tr>
+
+{% for issue in issues %}
+
+<tr>
+
+<td>{{ issue[0] }}</td>
+<td>{{ issue[1] }}</td>
+<td>{{ issue[2] }}</td>
+<td>{{ issue[3] }}</td>
+<td>{{ issue[4] }}</td>
+<td>{{ issue[5] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/dashboard">
+<button class="back-btn">
+Back to Dashboard
+</button>
+</a>
+
+</body>
+</html>
