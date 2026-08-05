@@ -1,31 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Return Book</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Return Book</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+.container{
+    width:450px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#2c3e50;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:20px;
+    border:none;
+    border-radius:6px;
+    font-size:17px;
+    cursor:pointer;
+    color:white;
+    background:#27ae60;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1e8449;
+}
+
+.back-btn{
+    background:#555;
+}
+
+.back-btn:hover{
+    background:#333;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h1>Return Module</h1>
+<div class="container">
+
+<h2>↩ Return Book</h2>
 
 <form method="POST">
 
-<label>Book ID</label><br>
-<input type="text" name="book_id" required><br><br>
+<label>Book ID</label>
+<input type="number" name="book_id" placeholder="Enter Book ID" required>
 
-<label>Return Date</label><br>
-<input type="date" name="return_date" required><br><br>
+<label>Return Date</label>
+<input type="date" name="return_date" required>
 
 <button type="submit">Return Book</button>
 
 </form>
 
-<br>
-
 <a href="/dashboard">
-    <button type="button">Back</button>
+    <button type="button" class="back-btn">
+        ⬅ Back to Dashboard
+    </button>
 </a>
+
+</div>
 
 </body>
 
