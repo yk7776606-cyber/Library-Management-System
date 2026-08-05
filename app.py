@@ -451,6 +451,9 @@ def delete_book(book_id):
 @app.route("/issue_books")
 def issue_books():
 
+    if "username" not in session:
+        return redirect("/")
+
     con = get_connection()
     cur = con.cursor()
 
@@ -459,10 +462,12 @@ def issue_books():
     if search:
 
         cur.execute("""
-            SELECT * FROM issue_books
-            WHERE CAST(student_id AS CHAR) LIKE %s
-            OR CAST(book_id AS CHAR) LIKE %s
+            SELECT *
+            FROM issue_books
+            WHERE CAST(student_id AS TEXT) LIKE %s
+            OR CAST(book_id AS TEXT) LIKE %s
             OR status LIKE %s
+            ORDER BY issue_id
         """, (
             "%" + search + "%",
             "%" + search + "%",
@@ -471,7 +476,11 @@ def issue_books():
 
     else:
 
-        cur.execute("SELECT * FROM issue_books")
+        cur.execute("""
+            SELECT *
+            FROM issue_books
+            ORDER BY issue_id
+        """)
 
     data = cur.fetchall()
 
@@ -483,6 +492,96 @@ def issue_books():
         issues=data,
         search=search
     )
+
+
+# ---------------- ADD ISSUE ----------------
+
+@app.route("/add_issue", methods=["POST"])
+def add_issue():
+
+    if "username" not in session:
+        return redirect("/")
+
+    student_id = request.form["student_id"]
+    book_id = request.form["book_id"]
+    issue_date = request.form["issue_date"]
+    return_date = request.form["return_date"]
+    status = request.form["status"]
+
+    con = get_connection()
+    cur = con.cursor()
+
+    try:
+
+        # Check Student
+        cur.execute(
+            "SELECT * FROM students WHERE id=%s",
+            (student_id,)
+        )
+        student = cur.fetchone()
+
+        if not student:
+            cur.close()
+            con.close()
+            return "Invalid Student ID"
+
+        # Check Book
+        cur.execute(
+            "SELECT * FROM books WHERE book_id=%s",
+            (book_id,)
+        )
+        book = cur.fetchone()
+
+        if not book:
+            cur.close()
+            con.close()
+            return "Invalid Book ID"
+
+        # Check Available Quantity
+        cur.execute(
+            "SELECT available_quantity FROM books WHERE book_id=%s",
+            (book_id,)
+        )
+
+        available = cur.fetchone()[0]
+
+        if available <= 0:
+            cur.close()
+            con.close()
+            return "Book Not Available"
+
+        # Insert Issue
+        cur.execute("""
+            INSERT INTO issue_books
+            (student_id, book_id, issue_date, return_date, status)
+            VALUES (%s,%s,%s,%s,%s)
+        """, (
+            student_id,
+            book_id,
+            issue_date,
+            return_date,
+            status
+        ))
+
+        # Reduce Available Quantity
+        cur.execute("""
+            UPDATE books
+            SET available_quantity = available_quantity - 1
+            WHERE book_id=%s
+        """, (book_id,))
+
+        con.commit()
+
+    except Exception as e:
+        con.rollback()
+        cur.close()
+        con.close()
+        return str(e)
+
+    cur.close()
+    con.close()
+
+    return redirect("/issue_books")
 
 # ---------------- RETURN BOOK MODULE ----------------
 
