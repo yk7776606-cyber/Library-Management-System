@@ -36,22 +36,6 @@ body{
     color:white;
 }
 
-.logo{
-    display:flex;
-    justify-content:center;
-    margin-bottom:15px;
-}
-
-.logo img{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:white;
-    padding:8px;
-    object-fit:contain;
-    box-shadow:0 0 15px rgba(0,0,0,0.4);
-}
-
 .header h1{
     font-size:42px;
     margin-bottom:10px;
@@ -145,6 +129,7 @@ body{
 }
 
 @media(max-width:900px){
+
     .cards{
         grid-template-columns:repeat(2,1fr);
     }
@@ -152,9 +137,11 @@ body{
     .menu{
         width:95%;
     }
+
 }
 
 @media(max-width:600px){
+
     .cards{
         grid-template-columns:1fr;
     }
@@ -162,6 +149,7 @@ body{
     .header h1{
         font-size:30px;
     }
+
 }
 
 </style>
@@ -174,17 +162,13 @@ body{
 
 <div class="header">
 
-    <div class="logo">
-    <img src="{{ url_for('static', filename='images/library_logo.png') }}" alt="Library Logo">
-</div>
-
 <h1>📚 Library Management System</h1>
 
 <p>Welcome {{ session['username'] }}</p>
 
 <div class="datetime">
-<div id="date"></div>
-<div id="time"></div>
+    <div id="date"></div>
+    <div id="time"></div>
 </div>
 
 </div>
@@ -192,23 +176,23 @@ body{
 <div class="cards">
 
 <div class="card">
-<h2>{{ total_students }}</h2>
-<h3>Students</h3>
+    <h2>{{ total_students }}</h2>
+    <h3>Students</h3>
 </div>
 
 <div class="card">
-<h2>{{ total_staff }}</h2>
-<h3>Staff</h3>
+    <h2>{{ total_staff }}</h2>
+    <h3>Staff</h3>
 </div>
 
 <div class="card">
-<h2>{{ total_books }}</h2>
-<h3>Books</h3>
+    <h2>{{ total_books }}</h2>
+    <h3>Books</h3>
 </div>
 
 <div class="card">
-<h2>{{ total_issued }}</h2>
-<h3>Issued</h3>
+    <h2>{{ total_issued }}</h2>
+    <h3>Issued</h3>
 </div>
 
 </div>
@@ -218,36 +202,35 @@ body{
 <h2>Dashboard</h2>
 
 <a href="/students">
-<button>👨‍🎓 Student </button>
+    <button>👨‍🎓 Student</button>
 </a>
 
 <a href="/staff">
-<button>👨‍🏫 Staff </button>
+    <button>👨‍🏫 Staff</button>
 </a>
 
 <a href="/books">
-<button>📚 Books </button>
+    <button>📚 Books</button>
 </a>
 
 <a href="/issue_books">
-<button>📖 Student Issue </button>
+    <button>📖 Student Issue</button>
 </a>
 
 <a href="/staff_issue">
-<button>📝 Staff Issue </button>
+    <button>📝 Staff Issue</button>
 </a>
 
 <a href="/return">
-<button>↩ Return </button>
+    <button>↩ Return</button>
 </a>
 
-<!-- NEW REPORTS BUTTON -->
 <a href="/reports">
-<button>📊 Reports</button>
+    <button>📊 Reports</button>
 </a>
 
 <a href="/logout">
-<button class="logout">🚪 Logout</button>
+    <button class="logout">🚪 Logout</button>
 </a>
 
 </div>
@@ -258,13 +241,13 @@ body{
 
 function updateDateTime(){
 
-const now = new Date();
+    const now = new Date();
 
-document.getElementById("date").innerHTML =
-"📅 " + now.toLocaleDateString();
+    document.getElementById("date").innerHTML =
+        "📅 " + now.toLocaleDateString();
 
-document.getElementById("time").innerHTML =
-"🕒 " + now.toLocaleTimeString();
+    document.getElementById("time").innerHTML =
+        "🕒 " + now.toLocaleTimeString();
 
 }
 
