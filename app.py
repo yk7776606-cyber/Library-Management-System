@@ -1023,7 +1023,7 @@ def download_report():
         os.path.dirname(__file__),
         "static",
         "images",
-        "librarian_seal.jpg"
+        "librarian_seal.png"
     )
 
     if os.path.exists(seal_path):
