@@ -1031,7 +1031,7 @@ def download_report():
         seal_width = 110
         seal_height = 110
 
-        seal_x = (width - seal_width) / 2
+        seal_x = (width - seal_width) / 2 - 30
         seal_y = 75
 
         pdf.drawImage(
